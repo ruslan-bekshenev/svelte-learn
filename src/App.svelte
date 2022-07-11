@@ -11,6 +11,14 @@
   function handleClick() {
     count += 1;
   }
+
+  /**
+   *
+   * Мы не ограничены объявлением реактивных значений - мы также можем реактивно запускать произвольные выражения.
+   * */
+  $: {
+    console.log('count = ', count)
+  }
 </script>
 
 <button on:click={handleClick}>
