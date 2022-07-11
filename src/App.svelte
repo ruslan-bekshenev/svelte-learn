@@ -1,17 +1,5 @@
 <script>
-  import Nested from "./Nested.svelte";
-
-  let name = 'Евгений'
+  let string = `в этой строке есть <strong>HTML!!!</strong> код`;
 </script>
 
-<p>просто строка</p>
-
-<Nested />
-
-<style>
-p {
-  color: purple;
-  font-family: 'Comic Sans MS', cursive;
-  font-size: 2em;
-}
-</style>
+<p>{@html string}</p>
