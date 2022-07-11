@@ -1,5 +1,11 @@
 <script>
-  let string = `в этой строке есть <strong>HTML!!!</strong> код`;
+    let count = 0
+
+    function increment() {
+      ++count
+    }
 </script>
 
-<p>{@html string}</p>
+<button on:click={increment}>
+    Кликнул {count}
+</button>
