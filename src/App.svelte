@@ -10,9 +10,7 @@
     <button on:click={toggle}>
         Выйти
     </button>
-{/if}
-
-{#if !user.loggedIn}
+{:else }
     <button on:click={toggle}>
         Войти
     </button>
