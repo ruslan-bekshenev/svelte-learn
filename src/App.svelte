@@ -1,35 +1,16 @@
 <script>
-  async function getRandomNumber() {
-    const res = await fetch(`/tutorial/random-number`);
-    const text = await res.text();
+  let m = { x: 0, y: 0 };
 
-    if (res.ok) {
-      return text;
-    } else {
-      throw new Error(text);
-    }
-  }
-
-  let promise = getRandomNumber();
-
-  function handleClick() {
-    promise = getRandomNumber();
+  function handleMousemove(event) {
+    m.x = event.clientX;
+    m.y = event.clientY;
   }
 </script>
 
-<button on:click={handleClick}>
-    получить случайное число
-</button>
+<div on:mousemove={handleMousemove}>
+    Позиция курсора мыши {m.x} x {m.y}
+</div>
 
-{#await promise}
-    <p>...подождите</p>
-{:then number}
-    <p>Число равно {number}</p>
-{:catch error}
-    <p style="color: red">{error.message}</p>
-{/await}
-
-
-<!--{#await promise then value}-->
-<!--    <p>Число равно {value}</p>-->
-<!--{/await}-->
+<style>
+    div { width: 100%; height: 100%; }
+</style>
