@@ -1,13 +1,19 @@
 <script>
-  import Nested from "./Nested.svelte";
+  let user = { loggedIn: false };
 
-  const pkg = {
-    name: 'svelte',
-    version: 3,
-    speed: 'быстро',
-    website: 'https://svelte.dev'
+  function toggle() {
+    user.loggedIn = !user.loggedIn;
   }
 </script>
 
-<Nested name={pkg.name} version={pkg.version} speed={pkg.speed} website={pkg.website}/>
-<Nested {...pkg}/>
+{#if user.loggedIn}
+    <button on:click={toggle}>
+        Выйти
+    </button>
+{/if}
+
+{#if !user.loggedIn}
+    <button on:click={toggle}>
+        Войти
+    </button>
+{/if}
