@@ -1,30 +1,18 @@
 <script>
-  const emojis = {
-    apple: '🍎',
-    banana: '🍌',
-    carrot: '🥕',
-    doughnut: '🍩',
-    egg: '🥚',
-  };
+  // createEventDispatcher должен вызываться при инициализации экземпляра компонента — вы не можете сделать это позже, например,
+  // внутри функции обратного вызова в setTimeout. Эта функция привязывает dispatch к конкретному экземпляру компонента.
 
-  // `name` обновляется при изменении значения свойства...
-  export let name;
+  import { createEventDispatcher } from 'svelte';
 
-  // ...а переменная `emoji` фиксируется при инициализации компонента
-  const emoji = emojis[name];
+  const dispatch = createEventDispatcher();
+
+  function sayHello() {
+    dispatch('message', {
+      text: 'Привет!!!'
+    });
+  }
 </script>
 
-<p>
-    <span>Смайлик для {name}: {emoji}</span>
-</p>
-
-<style>
-    p {
-        margin: 0.8em 0;
-    }
-    span {
-        display: inline-block;
-        padding: 0.2em 1em 0.3em;
-        background-color: #ffdfd3;
-    }
-</style>
+<button on:click={sayHello}>
+    Нажми для приветствия
+</button>

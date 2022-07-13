@@ -1,18 +1,9 @@
 <script>
-  // preventDefault — вызывает event.preventDefault() перед запуском обработчика. Полезно в т.ч. для обработки форм на клиентской стороне.
-  // stopPropagation — вызывает event.stopPropagation(), предотвращает распространение события до следующих элементов
-  // passive — улучшает производительность прокрутки при тач-событиях или при прокрутке колёсиком мышки (Svelte добавит этот модификатор автоматически там, где это безопасно)
-  // nonpassive — явно устанавливает passive: false
-  // capture — вызывает событие в режиме перехвата вместо всплытия (см. документацию MDN)
-  // once — удаляет обработчик события после первого вызова
-  // self — вызывает событие, только если event.target указывает на этот же элемент
-  // trusted — обработчик сработает, только если event.isTrusted имеет значение true. Т.е. если событие инициируется действием пользователя.
+  import Inner from './Thing.svelte';
 
-  function handleClick() {
-    alert('Кнопка нажата')
+  function handleMessage(event) {
+    alert(event.detail.text);
   }
 </script>
 
-<button on:click|once={handleClick}>
-    Нажми меня
-</button>
+<Inner on:message={handleMessage}/>
