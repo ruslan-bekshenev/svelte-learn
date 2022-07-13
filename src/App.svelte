@@ -1,9 +1,8 @@
 <script>
-  import CustomButton from "./CustomButton.svelte";
-
-  function handleClick() {
-    alert("кнопка нажата");
-  }
+  let name = 'мир';
 </script>
 
-<CustomButton on:click={handleClick} />
+<input bind:value={name}>
+
+<h1>Привет, {name}!</h1>
+
