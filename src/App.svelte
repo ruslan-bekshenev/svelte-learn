@@ -1,17 +1,11 @@
 <script>
-  let user = { loggedIn: false };
-
-  function toggle() {
-    user.loggedIn = !user.loggedIn;
-  }
+    let x = 12
 </script>
 
-{#if user.loggedIn}
-    <button on:click={toggle}>
-        Выйти
-    </button>
-{:else }
-    <button on:click={toggle}>
-        Войти
-    </button>
+{#if x > 10}
+    <p>{x} больше, чем 10</p>
+{:else if 5 > x}
+    <p>{x} меньше, чем 5</p>
+{:else}
+    <p>{x} между 5 и 10</p>
 {/if}
