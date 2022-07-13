@@ -1,28 +1,17 @@
 <script>
-  /**
-   реактивные объявления - вычисление данных засчет других, при изменении одних переменных
-   будут изменены другие.
+    let numbers = [1,2,3,4];
 
-   Реактивные объявления становятся гораздо полезнее,
-   когда нужно ссылаться на них несколько раз, или у вас есть значения, которые зависят от других реактивных значений.
-   */
-  let count = 0;
-  $: doubled = count * 2;
-  function handleClick() {
-    count += 1;
-  }
+    function addNumber() {
+      numbers = [...numbers, numbers.length + 1]
+    }
 
-  /**
-   *
-   * Мы не ограничены объявлением реактивных значений - мы также можем реактивно запускать произвольные выражения.
-   * */
-  $: {
-    console.log('count = ', count)
-  }
+    $: sum = numbers.reduce((t,n) => t + n)
 </script>
 
-<button on:click={handleClick}>
-    {count === 0 ? 'Кликни по мне' : `Кликов: ${count}`}
-</button>
+<p>
+    {numbers.join(' + ')} = {sum}
+</p>
 
-<p>Удвоим {count} и получим {doubled}</p>
+<button on:click={addNumber}>
+    Добавить число
+</button>
