@@ -1,1 +1,5 @@
-<p>Еще одна просто строка</p>
+<script>
+    export let answer
+</script>
+
+<p>Answer = {answer}</p>
