@@ -1,21 +1,18 @@
 <script>
-  let a = 1;
-  let b = 2;
+  let yes = false;
 </script>
 
 <label>
-    <input type=number bind:value={a} min=0 max=10>
-    <input type=range bind:value={a} min=0 max=10>
+    <input type=checkbox bind:checked={yes}>
+    Да, я хочу получать спам на почту!
 </label>
 
-<label>
-    <input type=number bind:value={b} min=0 max=10>
-    <input type=range bind:value={b} min=0 max=10>
-</label>
+{#if yes}
+    <p>Спасибо! Мы будем слать вам тонны спама и продадим ваши личные данные.</p>
+{:else}
+    <p>Пожалуйста, поставьте галочку. Если вы ни за что не платите, то сами являетесь товаром.</p>
+{/if}
 
-<p>{a} + {b} = {a + b}</p>
-
-<style>
-    label { display: flex }
-    input, p { margin: 6px }
-</style>
+<button disabled={!yes}>
+    Подписаться
+</button>
