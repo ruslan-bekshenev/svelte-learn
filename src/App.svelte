@@ -1,18 +1,49 @@
 <script>
-  let yes = false;
+    let scoops = 1;
+    let flavours = ['Шоколадная крошка с мятой'];
+
+    let menu = ['Печенье со сливками', 'Шоколадная крошка с мятой', 'Малиновый джем'];
+
+    function join(flavours) {
+        if (flavours.length === 1) return flavours[0];
+        return `${flavours.slice(0, -1).join(', ')} и ${flavours[flavours.length - 1]}`;
+    }
 </script>
 
+<h2>Размер</h2>
+
 <label>
-    <input type=checkbox bind:checked={yes}>
-    Да, я хочу получать спам на почту!
+    <input type="radio" bind:group={scoops} name="scoops" value={1} />
+    Один шарик
 </label>
 
-{#if yes}
-    <p>Спасибо! Мы будем слать вам тонны спама и продадим ваши личные данные.</p>
-{:else}
-    <p>Пожалуйста, поставьте галочку. Если вы ни за что не платите, то сами являетесь товаром.</p>
-{/if}
+<label>
+    <input type="radio" bind:group={scoops} name="scoops" value={2} />
+    Два шарика
+</label>
 
-<button disabled={!yes}>
-    Подписаться
-</button>
+<label>
+    <input type="radio" bind:group={scoops} name="scoops" value={3} />
+    Три шарика
+</label>
+
+<h2>Вкусы</h2>
+
+{#each menu as flavour}
+    <label>
+        <input type="checkbox" bind:group={flavours} name="flavours" value={flavour} />
+        {flavour}
+    </label>
+{/each}
+
+{#if flavours.length === 0}
+    <p>Выберите хотя бы один вкус</p>
+{:else if flavours.length > scoops}
+    <p>Нельзя выбрать вкусов больше, чем шариков!</p>
+{:else}
+    <p>
+        Вы заказали {scoops}
+        {scoops === 1 ? 'шарик' : 'шарика'}:
+        {join(flavours)}
+    </p>
+{/if}
